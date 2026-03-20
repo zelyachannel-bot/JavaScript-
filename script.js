@@ -1,25 +1,29 @@
 
-
 function task1(name, age, city) {
   return `${name} (age ${age}) lives in ${city}`;
 }
 alert(task1("Anton", 22, "Minsk"));
 
 function task2_converting(){
+
 let choice = Number(prompt("Choose what temperature you want to input  \n 1.Celsius \n 2.Farenheit: "));
+let temperature;
+let temperature_new;
+
 switch (choice){
   case 1:
-  let temperature= Number(prompt("Enter temperature in Celsius :"));
-  let temperature_new=(temperature * 9/5) + 32;
-  alert(`${temperature}*C=${temperature_new} Farenheit`);
+  temperature = Number(prompt("Enter temperature in Celsius :"));
+  temperature_new = (temperature * 9/5) + 32;
+  alert(`${temperature} C = ${temperature_new} Farenheit`);
   break;
   case 2:
-  temperature= Number(prompt("Enter temperature in Farenheit :"));
-  temperature_new=(temperature - 32) * 5/9;
-  alert(`${temperature}*F=${temperature_new} Celsius`);
+  temperature = Number(prompt("Enter temperature in Farenheit :"));
+  temperature_new = (temperature - 32) * 5/9;
+  alert(`${temperature} F = ${temperature_new} Celsius`);
   break;
   default:
-  alert("Invalid Choice");}
+  alert("Invalid Choice");
+}
 }
 task2_converting();
 
@@ -47,11 +51,15 @@ class Car {
 }
 class BankAccount{
 
+ #owner;
+ #balance;
 
-    constructor(owner,initialBalance){
-        this._owner =owner;
-        this._balance = initialBalance;
-    }
+ constructor(owner,initialBalance){
+
+  this.#owner = owner;
+  this.#balance = initialBalance;
+
+ }
   deposit(amount){
 
  if(isNaN(amount)){
@@ -63,8 +71,8 @@ class BankAccount{
   console.log("Deposit must be positive");
   return;
  }
- this._balance += amount;
- console.log(this._balance);
+ this.#balance += amount;
+ console.log(this.#balance);
 
 }
     withdraw(amount){
@@ -72,7 +80,7 @@ class BankAccount{
      if(isNaN(amount)){
        console.log("Withdraw must be Number");
       return;
-     } if (amount > this._balance){
+     } if (amount > this.#balance){
       console.log("Not enough money on your balance account");
       return;
      }
@@ -80,15 +88,15 @@ class BankAccount{
       console.log("Withdraw must be positive");
       return;
       }
-      this._balance -= amount;
-      console.log(this._balance + " Is your balance");
+      this.#balance -= amount;
+      console.log(this.#balance + " Is your balance");
     }
 
     getBalance(){
-    return this._balance;
+    return this.#balance;
     }
     get owner() {
-    return this._owner;
+    return this.#owner;
   }
 
   set owner(newOwner) {
@@ -100,7 +108,7 @@ class BankAccount{
        console.log("Owner name cannot be number");
        return;
     }
-    this._owner = newOwner;
+    this.#owner = newOwner;
   }
 
 }
@@ -151,7 +159,7 @@ class Library{
 
  }
 removeBook(title){
-  for(i=0;i<this.books.length;i++){
+  for(let i=0;i<this.books.length;i++){
     if(this.books[i].title===title){
       this.books.splice(i,1);
       alert(`${title} is removed`);
@@ -163,32 +171,27 @@ listAllBooks(book){
   if (this.books.length==0){
     console.log('Library is empty');
   }else{
-     for(i=0;i<this.books.length;i++){
+     for(let i=0;i<this.books.length;i++){
     console.log(`Title: ${this.books[i].title}, Author: ${this.books[i].author} `);
     }
   }
 }
 searchByAuthor(author){
-   if (this.books.length==0){
+  if (this.books.length==0){
     console.log('Library is empty');
-  } let found=false;
-
-    for(i=0;i<this.books.length;i++){
-      if(author===this.books[i].author){
-      console.log(`Title: ${this.books[i].title}, Author: ${this.books[i].author} `);
+    return;
+  }
+  let found=false;
+  for(let i=0;i<this.books.length;i++){
+    if(author===this.books[i].author){
+      console.log(`Title: ${this.books[i].title}, Author: ${this.books[i].author}`);
       found=true;
-      }else{
-        console.log(`Cannot find this author`);
-
     }
   }
-  if(!found){
-
-  console.log("Author not found");
-
+     if(found === false){
+    console.log("Author not found");
  }
-
-  }
+}
 
 }
 
